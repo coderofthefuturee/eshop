@@ -3,10 +3,15 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv/config')
+const authJwt = require('./helpers/jwt');
 
-require('dotenv/config');
 const api = process.env.API_URL;
 const productsRouter = require('./routers/products'); 
+
+app.use(cors());
+app.options('*', cors());
 
 //middleware
 app.use(express.json());
